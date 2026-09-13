@@ -1,4 +1,4 @@
-SehatBill AI — Document Q&A
+**SehatBill AI — Document Q&A**
 
 Upload selectable-text PDF or UTF-8 TXT files, then ask questions about them. The app extracts PDF text page by page with PyMuPDF, splits each page into overlapping chunks, embeds them locally with sentence-transformers/all-MiniLM-L6-v2, and searches a per-session FAISS index. It sends your question and the most relevant excerpts to Groq's openai/gpt-oss-20b to write a brief answer with [S1]-style citations. Each cited filename, page and excerpt appears below the answer. A TXT file is labeled page 1 because it has no physical pages.
 
@@ -6,7 +6,7 @@ The interface walks users through upload, question, and source checking. After u
 
 This is a learning demo for fictional or non-sensitive documents, not medical or financial advice. It does not OCR scans, diagnose conditions, verify that charges are fraudulent, or determine whether a price is fair without an authoritative tariff. Retrieval and generated answers can still be wrong; verify against the displayed excerpts. The similarity cutoff is a heuristic, so even an answer present in a document may sometimes be missed. Excerpts and questions leave Streamlit's server for Groq. Each browser session holds its own index in memory; uploads are not written to disk by this app. A new or restarted session must upload again. A public app should not be used for real patient data without a suitable privacy and security review.
 
-Deploy using websites only
+**Deploy using websites only**
 
 Create a GitHub account and a Groq API key. Keep the key private.
 
@@ -25,7 +25,7 @@ Wait while Streamlit installs requirements.txt and downloads the embedding model
 Upload limits in this demo: 10 MB per file, 25 MB total, 150 pages per PDF, 500,000 extracted characters per document. A scanned PDF with no text needs OCR outside this app. On a small free instance, model loading or many uploads may exhaust memory; try smaller files. faiss-cpu wheels depend on the deployment Python version; use a supported Python version in Streamlit's Advanced settings if package installation fails.
 The .streamlit/config.toml file sets Streamlit's upload-widget limit to 25 MB so it no longer advertises the default 200 MB; the app separately enforces 10 MB per file and 25 MB combined.
 
-Files
+**Files**
 
 app.py: user interface, extraction, retrieval, generation and source display.
 
